@@ -1,0 +1,30 @@
+<div class="col s6 offset-s3"><div *ngIf="video" class="card ">
+
+
+        <div class="card-image waves-effect waves-block waves-light">
+            <img class="activator" [attr.src]="video.imageUrl">
+
+        </div>
+
+        <div class="card-content">
+            <span class="card-title activator">{{video.videoTitle}}<i class="material-icons right">more_vert</i></span>
+            <h4>Кошт : {{video.price}}</h4>
+            <h4>Рэйтынг : {{video.starRating}}</h4>
+            <h4>Апісанне : {{video.description}}</h4>
+        </div>
+
+    <div class="card-reveal">
+        <span class="card-title grey-text text-darken-4">Дзеянні<i class="material-icons right">close</i></span>
+        <p>Here is some more information about this product that is only revealed once clicked on.</p>
+    </div>
+
+
+
+</div>
+
+</div>
+
+
+<a class="col s12 waves-effect waves-light btn" (click)="onBack()">
+    <i class="material-icons left">arrow_back</i>Вярнуцца
+</a>

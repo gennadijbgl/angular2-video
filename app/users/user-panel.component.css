@@ -1,0 +1,55 @@
+form .reg-header{
+margin-bottom: 2.1em;
+}
+
+.profile-holder {
+    line-height: inherit!important;
+}
+
+.switch label input[type=checkbox]:checked + .lever{
+    background-color: #00d604 !important;
+
+}
+.switch label input[type=checkbox]:checked + .lever:after{
+    background-color: #04a600 !important;
+
+}
+
+.switch label .lever{
+    background-color: #d6d401 !important;
+}
+.switch label .lever:after{
+    background-color: #a6a401 !important;
+}
+
+input[type=checkbox]:checked:not(:disabled) ~ .lever:active::after,
+input[type=checkbox]:checked:not(:disabled).tabbed:focus ~ .lever::after {
+    box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4), 0 0 0 15px rgba(46, 166, 47, 0.09);
+
+}
+
+input[type=checkbox]:not(:disabled) ~ .lever:active:after,
+input[type=checkbox]:not(:disabled).tabbed:focus ~ .lever::after {
+    box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4), 0 0 0 15px rgba(166, 163, 42, 0.09);
+}
+
+.input-field{
+    transition: .2s ease-out;
+}
+.logout{
+    margin: 1em;
+}
+.card-content p{
+    margin: 2px 0;
+}
+.card-image .valign-wrapper{
+    margin: 0 5px;
+}
+/*#profile-back{*/
+    /*position: absolute;*/
+    /*left: .4em;*/
+    /*top:0;*/
+/*}*/
+/*#profile-back .btn{*/
+    /*padding: 0 .3em;*/
+/*}*/

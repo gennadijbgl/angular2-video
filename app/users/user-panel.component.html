@@ -1,0 +1,116 @@
+ <div class="row" >
+         <div class="col s6 offset-s3" *ngIf="initAndGetUser()?._id">
+         <h5 class="header center">Звесткі карыстача</h5>
+            <div class="card horizontal" >
+                <div class="card-image valign-wrapper">
+                    <i class="material-icons medium">account_circle</i>
+                </div>
+                <div class="card-stacked">
+                    <div class="card-content">
+                        <p>Імя : {{initAndGetUser().firstName}}</p>
+                        <p>Прозвішча : {{initAndGetUser().lastName}}</p>
+                        <p>Пошта : {{initAndGetUser().email}}</p>
+                        <p>Ці адмін : {{initAndGetUser().isAdmin?"Так":"Не"}}</p>
+                    </div>
+
+                </div>
+                <div class="valign-wrapper logout">
+                    <a  (click)="onLogout()">Выйсці</a>
+                </div>
+            </div>
+         </div>
+
+
+        <form class="col s8 offset-s2" *ngIf="!initAndGetUser()?._id" (submit)="onSubmit()">
+            <div class="reg-header">
+                <h5 class="header center">{{isRegistrationForm ? "Рэгістрацыя":"Уваход"}}</h5>
+                <div class="switch center">
+                    <label>
+                        Рэгістрацыя
+                        <input type="checkbox" #checkBox (change)="onFormChange(checkBox.checked)">
+                        <span class="lever"></span>
+                        Уваход
+                    </label>
+                </div>
+            </div>
+
+
+
+            <div class="red-text" *ngIf="error">
+                <blockquote>
+                    {{error}}
+                </blockquote>
+            </div>
+
+
+            <div class="preloader-wrapper big active" *ngIf="isPending">
+                <div class="spinner-layer spinner-blue-only">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div><div class="gap-patch">
+                    <div class="circle"></div>
+                </div><div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+                </div>
+            </div>
+
+
+            <div class="input-field" *ngIf="isRegistrationForm">
+
+                <input placeholder="Альгерд" id="firstName"
+                       required  maxlength="30"
+                       type="text" class="validate"
+                       [(ngModel)]="user.firstName" name="firstName">
+
+                <label for="firstName" data-error="Праверце звесткі">Імя</label>
+            </div>
+
+            <div class="input-field" *ngIf="isRegistrationForm">
+
+                <input placeholder="Вялікі" id="lastName"
+                       required  maxlength="30"
+                       type="text" class="validate"
+                       [(ngModel)]="user.lastName" name="lastName">
+
+                <label for="lastName" data-error="Праверце звесткі">Прозвішча</label>
+            </div>
+
+
+
+            <div class="input-field">
+
+                <input placeholder="alherd_vialiki@gmail.com" id="email"
+                       required minlength="4" maxlength="30"
+                       type="email" class="validate"
+                       [(ngModel)]="user.email"  name="email">
+
+                <label for="email" data-error="Праверце звесткі">Пошта</label>
+            </div>
+
+            <div class="input-field">
+
+                <input placeholder="asdfgh1" id="password"
+                       required minlength="3" maxlength="30"
+                       type="password" class="validate"
+                       [(ngModel)]="user.password" name="password">
+
+                <label for="password" data-error="Праверце звесткі">Пароль</label>
+            </div>
+
+
+            <div class="input-field center">
+                <button class="btn small waves-effect waves-light light-blue"
+                        type="submit" name="action">{{isRegistrationForm ? "Зарэгістравацца":"Увайсці"}}
+                </button>
+            </div>
+
+            <div class="input-field center">
+            <button (click)="onBack()" class="btn small waves-effect waves-light light-blue">
+                Вярнуцца<i class="material-icons left">arrow_back</i>
+            </button>
+            </div>
+
+        </form>
+
+</div>

@@ -1,0 +1,14 @@
+<div class="card small">
+
+    <div class="card-image">
+        <img [src]="_video.imageUrl">
+        <span class="card-title">{{_video.videoTitle}}</span>
+    </div>
+
+    <div class="card-content">
+        {{_video.description}}
+    </div>
+    <span class="card-action">
+         <a [routerLink]="['/detail',_video.videoId]" routerLinkActive="active">Падрабязнасці</a>
+    </span>
+</div>

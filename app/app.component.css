@@ -1,0 +1,7 @@
+.brand-logo img{
+    margin-top: 10px;
+    height: 40px;
+}
+
+.progress{ position: fixed; top: 0; left: 0; height: 2px; }
+

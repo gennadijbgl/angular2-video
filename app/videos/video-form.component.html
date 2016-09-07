@@ -1,0 +1,73 @@
+<div class="row">
+
+    <form class="col s8 offset-s2"
+          (ngSubmit)="onSubmit()"  #videoForm="ngForm" >
+
+        <h4 class="header center">{{video.videoId ?'Змяненне відыё':'Стварэнне відыё'}}</h4>
+
+            <div class="input-field">
+
+                <input placeholder="Новае відыё" id="videoTitle"
+                       required minlength="5" maxlength="30"
+                       type="text" class="validate"  #title="ngModel"
+                       [(ngModel)]="video.videoTitle" name="videoTitle">
+
+                <label for="videoTitle" data-error="Праверце звесткі">Загаловак</label>
+            </div>
+
+            <div class="input-field">
+                <textarea id="description" class="materialize-textarea" placeholder="Стужка пра неба." [(ngModel)]="video.description" name="description"></textarea>
+                <label for="description">Апісанне</label>
+            </div>
+
+            <div class="input-field">
+                <input placeholder="100" id="price"
+                       type="number" class="validate" required [(ngModel)]="video.price" name="price">
+                <label for="price">Кошт</label>
+            </div>
+
+            <div class="input-field">
+                <input placeholder="3" id="rating"
+                       type="number" class="validate"  name="starRating" [(ngModel)]="video.starRating">
+                <label for="rating">Рэйтынг</label>
+            </div>
+
+            <div class="input-field">
+                <img [attr.src]="video.imageUrl" class="responsive-img"
+
+                     #img>
+            </div>
+
+.
+
+            <div class="input-field file-field">
+                <div class="btn">
+                    <span>Выява</span>
+                    <i class="material-icons right">image</i>
+                    <input type="file" (change)="imagePreview($event)">
+                </div>
+
+                <div class="file-path-wrapper image-progress">
+                    <input class="file-path validate" [value]="video.imageUrl ? video.imageUrl: 'Выява не абраная' " type="text">
+                </div>
+            </div>
+
+
+        <div class="input-field center">
+            <button class="btn waves-effect waves-light light-blue"
+                    [disabled]="!videoForm.form.valid"
+                     type="submit" name="action">Даслаць
+                <i class="material-icons right">send</i>
+            </button>
+        </div>
+
+        <div class="input-field center">
+            <button class="btn waves-effect waves-light waves-red"
+
+                    type="button" (click)="onRemove()" name="action">Выдаліць
+                <i class="material-icons right">delete</i>
+            </button>
+        </div>
+
+    </form>
+</div>

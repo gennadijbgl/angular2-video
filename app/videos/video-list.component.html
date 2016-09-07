@@ -1,0 +1,42 @@
+<div class="col s12">
+
+    <video-v class="col s12 m6 l3" *ngFor="let video of displayerVideos|async" [_video]="video">
+    </video-v>
+
+
+    <div class="col s12 center" *ngIf="(pages | async)">
+        <ul class="pagination" >
+
+            <li class="waves-effect" [ngClass]="{disabled: true}">
+                <a [routerLink]="['/list',1]">
+                    <i class="material-icons">arrow_back</i>
+                </a>
+            </li>
+
+            <li class="waves-effect" [ngClass]="{'disabled': page-1<=0}" >
+                <a  [routerLink]="['/list',(page-1)>0?(page-1):1]">
+                    <i class="material-icons">chevron_left</i>
+                </a>
+            </li>
+
+            <paginationF  *ngFor="let curPage of pages | async">
+
+                <li [ngClass]="{'waves-effect': curPage!=page, 'active':curPage==page }"  >
+                    <a (click)="changePage(curPage)">{{curPage}}</a>
+                </li>
+
+            </paginationF>
+
+            <li class="waves-effect" [ngClass]="{disabled: true}">
+                <a [routerLink]="['/list',1]">
+                    <i class="material-icons">chevron_right</i>
+                </a>
+            </li>
+            <li class="waves-effect" [ngClass]="{disabled: true}">
+                <a [routerLink]="['/list',1]">
+                    <i class="material-icons">arrow_forward</i>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
