@@ -22,6 +22,7 @@ var FileUploadService = (function () {
         this.progress = 0;
         this.uploadProgress = 0;
         this.notifer = new core_1.EventEmitter();
+        NProgress.configure({ minimum: 0.01, showSpinner: false });
         this.progress$ = new Rx_1.Observable(function (observer) {
             _this.progressObserver = observer;
         });
@@ -42,11 +43,13 @@ var FileUploadService = (function () {
     FileUploadService.prototype.upload = function (url, file) {
         var _this = this;
         return new Promise(function (resolve, reject) {
+            NProgress.start();
             var formData = new FormData(), xhr = new XMLHttpRequest();
             formData.append("fileUpload", file, file.name);
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4) {
                     if (xhr.status === 200) {
+                        NProgress.done();
                         resolve(JSON.parse(xhr.response));
                     }
                     else {
@@ -57,6 +60,7 @@ var FileUploadService = (function () {
             FileUploadService.setUploadUpdateInterval(500);
             xhr.upload.onprogress = function (event) {
                 _this.progress = Math.round(event.loaded / event.total * 100);
+                NProgress.set(event.loaded / event.total);
                 _this.progressObserver.next(_this.progress);
             };
             xhr.open('POST', url, true);

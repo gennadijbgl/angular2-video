@@ -15,6 +15,7 @@ var core_1 = require('@angular/core');
 var video_service_1 = require("./video.service");
 var router_1 = require("@angular/router");
 var upload_service_1 = require("./upload.service");
+var forms_1 = require("@angular/forms");
 var VideoFormComponent = (function () {
     function VideoFormComponent(_vs, _routeParams, element, _uplS, router) {
         this._vs = _vs;
@@ -69,17 +70,22 @@ var VideoFormComponent = (function () {
         }
     };
     VideoFormComponent.prototype.processVideo = function () {
+        var _this = this;
         if (!this.video.videoId) {
             var a = this._vs.createItem(this.video);
-            a.then(function (t) {
+            a.subscribe(function (t) {
                 console.log(t);
+                if (t.success)
+                    _this.form.reset();
             });
             this.router.navigate(['/list']);
         }
         else {
             var a = this._vs.updateItem(this.video);
-            a.then(function (t) {
+            a.subscribe(function (t) {
                 console.log(t);
+                if (t.success)
+                    _this.form.reset();
             });
             this.router.navigate(['/list']);
         }
@@ -100,6 +106,10 @@ var VideoFormComponent = (function () {
         });
         this.router.navigate(['/list']);
     };
+    __decorate([
+        core_1.ViewChild(forms_1.NgForm), 
+        __metadata('design:type', forms_1.NgForm)
+    ], VideoFormComponent.prototype, "form", void 0);
     VideoFormComponent = __decorate([
         core_1.Component({
             templateUrl: 'app/videos/video-form.component.html',

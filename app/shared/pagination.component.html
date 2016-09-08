@@ -1,0 +1,26 @@
+<div class="col s12 center" *ngIf="(pages | async)">
+    <ul class="pagination" >
+
+
+        <li class="waves-effect" [ngClass]="{'disabled': !canPrev}" >
+            <a  [routerLink]="['/list',pagePrev]">
+                <i class="material-icons">chevron_left</i>
+            </a>
+        </li>
+
+        <paginationF  *ngFor="let curPage of pages | async">
+
+            <li [ngClass]="{'waves-effect': curPage!=page, 'active':curPage==page }"  >
+                <a  [routerLink]="['/list',curPage]">{{curPage}}</a>
+            </li>
+
+        </paginationF>
+
+        <li class="waves-effect" [ngClass]="{disabled: !canNext}">
+            <a [routerLink]="['/list', pageNext]">
+                <i class="material-icons">chevron_right</i>
+            </a>
+        </li>
+
+    </ul>
+</div>

@@ -4,6 +4,7 @@
 import {Injectable, Output, EventEmitter} from '@angular/core';
 import {Observable} from 'rxjs/Rx';
 
+declare var NProgress:any;
 @Injectable()
 export class FileUploadService {
     /**
@@ -23,6 +24,7 @@ export class FileUploadService {
     @Output() notifer:EventEmitter<number> = new EventEmitter<number>();
 
     constructor () {
+        NProgress.configure({ minimum: 0.01,showSpinner: false });
         this.progress$ = new Observable<number>((observer:any) => {
             this.progressObserver = observer;
         });
@@ -45,6 +47,9 @@ export class FileUploadService {
      */
     public upload (url: string, file: File): Promise<any> {
         return new Promise((resolve, reject) => {
+
+            NProgress.start();
+
             let formData: FormData = new FormData(),
                 xhr: XMLHttpRequest = new XMLHttpRequest();
 
@@ -53,6 +58,7 @@ export class FileUploadService {
             xhr.onreadystatechange = () => {
                 if (xhr.readyState === 4) {
                     if (xhr.status === 200) {
+                        NProgress.done();
                         resolve(JSON.parse(xhr.response));
                     } else {
                         reject(xhr.response);
@@ -64,7 +70,9 @@ export class FileUploadService {
 
             xhr.upload.onprogress = (event) => {
                 this.progress = Math.round(event.loaded / event.total * 100);
+                NProgress.set(event.loaded / event.total);
                 this.progressObserver.next(this.progress);
+
             };
 
             xhr.open('POST', url, true);

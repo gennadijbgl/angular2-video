@@ -15,6 +15,7 @@ var core_1 = require('@angular/core');
 var http_1 = require("@angular/http");
 var authenticate_service_1 = require("../users/authenticate.service");
 var helper_1 = require("../helper");
+var status_response_model_1 = require("../models/status-response.model");
 var VideoService = (function () {
     function VideoService(http, auth) {
         this.http = http;
@@ -32,11 +33,9 @@ var VideoService = (function () {
             .catch(helper_1.Helper.handleError);
     };
     VideoService.prototype.updateItem = function (item) {
-        var headers = new http_1.Headers({
-            'Content-Type': 'application/json' });
         return this.http
-            .put(this.apiUrl + "/" + item.videoId, JSON.stringify(item), { headers: headers })
-            .map(function (res) { return res.json().data; })
+            .put(this.apiUrl + "/" + item.videoId, JSON.stringify(item), { headers: helper_1.Helper.createHeaders() })
+            .map(function (res) { return status_response_model_1.StatusResponse.create(res.json()); })
             .catch(helper_1.Helper.handleError);
     };
     VideoService.prototype.deleteItem = function (item) {
@@ -46,11 +45,9 @@ var VideoService = (function () {
             .catch(helper_1.Helper.handleError);
     };
     VideoService.prototype.createItem = function (video) {
-        var headers = new http_1.Headers({
-            'Content-Type': 'application/json' });
         return this.http
-            .post(this.apiUrl, JSON.stringify(video), { headers: headers })
-            .map(function (res) { return res.json().data; })
+            .post(this.apiUrl, JSON.stringify(video), { headers: helper_1.Helper.createHeaders() })
+            .map(function (res) { return status_response_model_1.StatusResponse.create(res.json()); })
             .catch(helper_1.Helper.handleError);
     };
     VideoService = __decorate([

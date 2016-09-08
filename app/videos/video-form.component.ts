@@ -3,13 +3,14 @@
  */
 import {
     Component, OnInit, AfterViewInit, AfterContentChecked, AfterViewChecked, ElementRef,
-    Output, EventEmitter, OnDestroy
+    Output, EventEmitter, OnDestroy, ViewChild
 } from '@angular/core';
 import {Video} from "../models/video.model";
 import {VideoService} from "./video.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Observable, Subscription} from "rxjs";
 import { FileUploadService} from "./upload.service";
+import {NgForm} from "@angular/forms";
 
 declare var Materialize:any;
 
@@ -22,6 +23,8 @@ export class VideoFormComponent implements OnInit,AfterViewChecked,OnDestroy{
 
     video:Video = <Video>{};
     file:File;
+
+    @ViewChild(NgForm) form: NgForm;
 
     private sub: Subscription;
     private sub1: Subscription;
@@ -99,9 +102,10 @@ export class VideoFormComponent implements OnInit,AfterViewChecked,OnDestroy{
         if(!this.video.videoId)
         {
             let a = this._vs.createItem(this.video);
-            a.then(t=>
+            a.subscribe(t=>
             {
                 console.log(t);
+                if(t.success) this.form.reset();
             });
             this.router.navigate(['/list']);
 
@@ -109,9 +113,10 @@ export class VideoFormComponent implements OnInit,AfterViewChecked,OnDestroy{
         else {
 
             let a = this._vs.updateItem(this.video);
-            a.then(t=>
+            a.subscribe(t=>
             {
                 console.log(t);
+                if(t.success) this.form.reset();
             });
             this.router.navigate(['/list']);
         }

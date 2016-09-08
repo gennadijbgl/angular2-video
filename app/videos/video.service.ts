@@ -10,6 +10,7 @@ import {handle, handleError} from "typings/dist/support/cli";
 import {CRUDService} from "../service.interface";
 import {AuthenticateService} from "../users/authenticate.service";
 import {Helper} from "../helper";
+import {StatusResponse} from "../models/status-response.model";
 
 
 @Injectable()
@@ -35,14 +36,13 @@ export class VideoService {
             .catch(Helper.handleError);
     }
 
-    updateItem(item:Video):Observable<Response>
+    updateItem(item:Video):Observable<StatusResponse>
     {
-        let headers = new Headers({
-            'Content-Type': 'application/json'});
+
 
         return this.http
-            .put(this.apiUrl+"/"+item.videoId, JSON.stringify(item), {headers: headers})
-            .map(res => res.json().data)
+            .put(this.apiUrl+"/"+item.videoId, JSON.stringify(item), {headers: Helper.createHeaders()})
+            .map(res =>StatusResponse.create(res.json()))
             .catch(Helper.handleError);
     }
 
@@ -55,14 +55,13 @@ export class VideoService {
     }
 
 
-     createItem(video: Video): Observable<Video>
+     createItem(video: Video): Observable<StatusResponse>
      {
-        let headers = new Headers({
-            'Content-Type': 'application/json'});
+
 
         return this.http
-            .post(this.apiUrl, JSON.stringify(video), {headers: headers})
-            .map(res => res.json().data)
+            .post(this.apiUrl, JSON.stringify(video), {headers: Helper.createHeaders()})
+            .map(res => StatusResponse.create(res.json()))
             .catch(Helper.handleError);
     }
 

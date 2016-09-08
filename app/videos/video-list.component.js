@@ -21,55 +21,12 @@ var VideoListComponent = (function () {
         this._videoService = _videoService;
         this._routeParams = _routeParams;
         this._router = _router;
-        this.page = 1;
-        this.postsPerPage = 2;
-        this.numPaginator = 3;
+        this.itemsCount = this._videoService.getItems().map(function (t) { return t.length; });
     }
-    VideoListComponent.prototype.ngOnDestroy = function () {
-        this.sub.unsubscribe();
-        this.pages.then(function (t) { return console.log(t); });
-        //   this.subVideos.unsubscribe();
-    };
-    VideoListComponent.prototype.onPageNext = function () {
-        if (this.canNext)
-            this._router.navigate(['list', ++this.page]);
-    };
-    VideoListComponent.prototype.rangeVideos = function (from, to) {
-        this.displayerVideos = this._videoService.getItems().map(function (t) { return t.slice(from, to); });
-    };
-    VideoListComponent.prototype.changePage = function (page) {
-        this.page = page;
-        this.initToPage();
-    };
-    VideoListComponent.prototype.initToPage = function () {
-        var _this = this;
-        var from = (this.page - 1) * this.postsPerPage;
-        var to = (this.page - 1) * this.postsPerPage + this.postsPerPage;
-        console.log("from = " + from + " to = " + to);
-        this.rangeVideos(from, to);
-        this.pages = this._videoService.getItems().toPromise().then(function (t) {
-            var pages = Math.ceil(t.length / _this.postsPerPage);
-            _this.canNext = _this.page < pages;
-            _this.canPrev = _this.page > 1;
-            console.log("pages = " + pages);
-            console.log("page = " + _this.page);
-            var from = _this.numPaginator * (Math.ceil(_this.page / _this.numPaginator) - 1);
-            var to = _this.numPaginator * (Math.ceil(_this.page / _this.numPaginator) - 1) + _this.numPaginator;
-            console.log("from = " + from + " to = " + to);
-            return new Array(pages).fill().map(function (x, i) { return i + 1; })
-                .slice(from, to);
-        });
+    VideoListComponent.prototype.onPageChanged = function (param) {
+        this.itemsList = this._videoService.getItems().map(function (t) { return t.slice(param[0], param[1]); });
     };
     VideoListComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.sub = this._routeParams.params.subscribe(function (params) {
-            if (params && params['page']) {
-                _this.page = +params['page'];
-            }
-            _this.initToPage();
-        });
-        this.sourceVideos = this._videoService.getItems();
-        // setTimeout(()=>{this.sourceVideos.map(t=> t.slice(1,1)).},3000);
     };
     VideoListComponent = __decorate([
         core_1.Component({

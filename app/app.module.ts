@@ -20,11 +20,12 @@ import {UserService} from "./users/user.service";
 import {PageNotFoundComponent} from "./app-page404.component";
 import {UserPanelComponent} from "./users/user-panel.component";
 import {AuthenticateService} from "./users/authenticate.service";
+import {PaginationComponent} from "./shared/pagination.component";
 
 @NgModule({
     declarations:
         [AppComponent, PageNotFoundComponent,
-        UserPanelComponent,VideoListComponent, VideoDetailComponent,
+        UserPanelComponent,VideoListComponent, PaginationComponent,VideoDetailComponent,
         VideoFormComponent,AppNavigationComponent],
     imports:      [BrowserModule, RouterModule, FormsModule, HttpModule, appRouterProviders],
     bootstrap:    [AppComponent],
