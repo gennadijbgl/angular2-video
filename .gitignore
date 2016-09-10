@@ -41,6 +41,8 @@ jspm_packages
 
 .idea/
 typings/
-uploads/*
-app/*.js
-app/*.map
+*.js
+*.map
+!app.js
+!js
+uploads/
