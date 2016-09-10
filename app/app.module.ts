@@ -21,12 +21,18 @@ import {PageNotFoundComponent} from "./app-page404.component";
 import {UserPanelComponent} from "./users/user-panel.component";
 import {AuthenticateService} from "./users/authenticate.service";
 import {PaginationComponent} from "./shared/pagination.component";
+import {StarRatingComponent} from "./shared/star-rating.component";
 
 @NgModule({
     declarations:
-        [AppComponent, PageNotFoundComponent,
-        UserPanelComponent,VideoListComponent, PaginationComponent,VideoDetailComponent,
-        VideoFormComponent,AppNavigationComponent],
+        [
+            AppComponent, PageNotFoundComponent,
+            UserPanelComponent,VideoListComponent,
+            PaginationComponent, StarRatingComponent,
+            VideoDetailComponent, VideoFormComponent,
+            AppNavigationComponent
+
+        ],
     imports:      [BrowserModule, RouterModule, FormsModule, HttpModule, appRouterProviders],
     bootstrap:    [AppComponent],
     providers:    [UserService,AuthenticateService,VideoService,FileUploadService]

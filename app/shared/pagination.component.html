@@ -10,7 +10,7 @@
 
         <paginationF  *ngFor="let curPage of pages | async">
 
-            <li [ngClass]="{'waves-effect': curPage!=page, 'active':curPage==page }"  >
+            <li  [@flyInOut]="item.state" #item [ngClass]="{'waves-effect': curPage!=page, 'active':curPage==page }"  >
                 <a  [routerLink]="['/list',curPage]">{{curPage}}</a>
             </li>
 

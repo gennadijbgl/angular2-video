@@ -31,7 +31,8 @@ var VideoListComponent = (function () {
     VideoListComponent = __decorate([
         core_1.Component({
             templateUrl: "app/videos/video-list.component.html",
-            directives: [video_view_component_1.VideoViewComponent]
+            directives: [video_view_component_1.VideoViewComponent],
+            styleUrls: ['app/videos/video-list.component.css']
         }), 
         __metadata('design:paramtypes', [video_service_1.VideoService, router_1.ActivatedRoute, router_1.Router])
     ], VideoListComponent);

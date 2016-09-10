@@ -1,0 +1,21 @@
+div i.material-icons{
+    cursor: pointer;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select:none;
+    user-select:none;
+    -o-user-select:none;
+
+}
+
+.star-floating{
+    display: inline-block;
+    position: absolute;
+}
+
+.star-floating .material-icons{
+    position: absolute;
+    left: 0;
+    top:0;
+    overflow: hidden;
+}

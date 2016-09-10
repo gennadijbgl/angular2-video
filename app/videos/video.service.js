@@ -34,8 +34,8 @@ var VideoService = (function () {
     };
     VideoService.prototype.updateItem = function (item) {
         return this.http
-            .put(this.apiUrl + "/" + item.videoId, JSON.stringify(item), { headers: helper_1.Helper.createHeaders() })
-            .map(function (res) { return status_response_model_1.StatusResponse.create(res.json()); })
+            .put(this.apiUrl + "/" + item.videoId, JSON.stringify(item), { headers: new http_1.Headers({ 'Content-Type': 'application/json' }) })
+            .map(function (res) { console.log(res); return status_response_model_1.StatusResponse.create(res.json()); })
             .catch(helper_1.Helper.handleError);
     };
     VideoService.prototype.deleteItem = function (item) {

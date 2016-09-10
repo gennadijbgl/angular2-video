@@ -1,9 +1,9 @@
-<div class="col s12">
+<div class="col s12 transformable" >
 
-    <video-v class="col s12 m6 l3"  *ngFor="let video of itemsList|async" [_video]="video">
+    <video-v class="col s12 m6 l3" *ngFor="let video of itemsList|async"  [_video]="video">
     </video-v>
 
-<pagination (changePage)="onPageChanged($event)"
+    <pagination (changePage)="onPageChanged($event)"
             [itemsCount]="itemsCount"></pagination>
 
 </div>

@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<div>
+    <i *ngFor="let item of ratingArr|async; let i=index"
+       (click)="onStarClicked(i)" class="material-icons">{{item}}</i>
 
-</body>
-</html>
+</div>

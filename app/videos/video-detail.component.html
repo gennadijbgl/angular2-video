@@ -1,4 +1,5 @@
-<div class="col s6 offset-s3"><div *ngIf="video" class="card ">
+<div class="col s6 offset-s3">
+    <div *ngIf="video" class="card ">
 
 
         <div class="card-image waves-effect waves-block waves-light">
@@ -11,16 +12,18 @@
             <h4>Кошт : {{video.price}}</h4>
             <h4>Рэйтынг : {{video.starRating}}</h4>
             <h4>Апісанне : {{video.description}}</h4>
+            <star-rating [rating]="video.starRating" (ratingChanged)="onRatingChanged($event)"></star-rating>
         </div>
 
     <div class="card-reveal">
         <span class="card-title grey-text text-darken-4">Дзеянні<i class="material-icons right">close</i></span>
-        <p>Here is some more information about this product that is only revealed once clicked on.</p>
+        <p><a [routerLink]="['/video',video.videoId]">Змяніць</a></p>
+        <p><a [routerLink]="['/video',video.videoId]">Выдаліць</a></p>
     </div>
 
 
 
-</div>
+    </div>
 
 </div>
 

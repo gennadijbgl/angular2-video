@@ -3,7 +3,7 @@
  * Created by Hienadz on 27.08.16.
  */
 
-import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Component, OnInit, OnDestroy, trigger, state, style, transition, animate} from '@angular/core';
 import {Video} from "../models/video.model";
 import {VideoService} from "./video.service";
 import {VideoViewComponent} from "./video-view.component";
@@ -15,7 +15,8 @@ import {PaginationComponent} from "../shared/pagination.component";
 @Component({
 
     templateUrl:"app/videos/video-list.component.html",
-    directives:[VideoViewComponent]
+    directives:[VideoViewComponent],
+    styleUrls:['app/videos/video-list.component.css']
 
 })
 export class VideoListComponent implements OnInit {

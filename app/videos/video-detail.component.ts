@@ -17,8 +17,8 @@ import {Subscription, Observable} from "rxjs";
 })
 export class VideoDetailComponent implements OnInit ,OnDestroy{
 
-
     video:Video;
+
     private sub: Subscription;
     private sub1: Subscription;
 
@@ -32,6 +32,17 @@ export class VideoDetailComponent implements OnInit ,OnDestroy{
 
     }
 
+    onRatingChanged(rating:number){
+        if(this.video.starRating!=0){
+            this.video.starRating +=rating;
+            this.video.starRating /= 2;
+        }
+        else this.video.starRating = rating;
+
+        this.video.starRating = +this.video.starRating.toFixed(2);
+
+        this._vs.updateItem(this.video);
+    }
 
     ngOnDestroy(){
         this.sub.unsubscribe();

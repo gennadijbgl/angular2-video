@@ -1,7 +1,7 @@
 /**
  * Created by Hienadz on 02.09.16.
  */
-import {Component, OnInit, OnDestroy, Output, EventEmitter} from '@angular/core';
+import {Component, OnInit, OnDestroy, Output, EventEmitter, trigger, state, style, transition, animate} from '@angular/core';
 import {Observable, Subscription} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
 
@@ -10,7 +10,21 @@ import {ActivatedRoute, Router} from "@angular/router";
     selector: 'pagination',
     templateUrl: 'app/shared/pagination.component.html',
     inputs:['itemsCount'],
-    outputs:['changePage']
+    outputs:['changePage'],
+    animations: [
+        trigger('flyInOut', [
+            state('in', style({
+                backgroundColor: '#eee',
+                transform: 'scale(1)'
+            })),
+            state('out',   style({
+                backgroundColor: '#05dc22',
+                transform: 'scale(1.1)'
+            })),
+            transition('inactive => active', animate('300ms ease-in')),
+            transition('active => inactive', animate('300ms ease-out'))
+        ])
+    ]
 })
 export class PaginationComponent implements OnInit, OnDestroy {
 

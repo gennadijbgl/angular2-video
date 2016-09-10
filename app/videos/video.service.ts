@@ -41,8 +41,8 @@ export class VideoService {
 
 
         return this.http
-            .put(this.apiUrl+"/"+item.videoId, JSON.stringify(item), {headers: Helper.createHeaders()})
-            .map(res =>StatusResponse.create(res.json()))
+            .put(this.apiUrl+"/"+item.videoId, JSON.stringify(item), {headers: new Headers({'Content-Type': 'application/json'})})
+            .map(res =>{console.log(res);return StatusResponse.create(res.json())})
             .catch(Helper.handleError);
     }
 

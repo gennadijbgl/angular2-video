@@ -30,14 +30,19 @@ var app_page404_component_1 = require("./app-page404.component");
 var user_panel_component_1 = require("./users/user-panel.component");
 var authenticate_service_1 = require("./users/authenticate.service");
 var pagination_component_1 = require("./shared/pagination.component");
+var star_rating_component_1 = require("./shared/star-rating.component");
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
-            declarations: [app_component_1.AppComponent, app_page404_component_1.PageNotFoundComponent,
-                user_panel_component_1.UserPanelComponent, video_list_component_1.VideoListComponent, pagination_component_1.PaginationComponent, video_detail_component_1.VideoDetailComponent,
-                video_form_component_1.VideoFormComponent, app_nav_component_1.AppNavigationComponent],
+            declarations: [
+                app_component_1.AppComponent, app_page404_component_1.PageNotFoundComponent,
+                user_panel_component_1.UserPanelComponent, video_list_component_1.VideoListComponent,
+                pagination_component_1.PaginationComponent, star_rating_component_1.StarRatingComponent,
+                video_detail_component_1.VideoDetailComponent, video_form_component_1.VideoFormComponent,
+                app_nav_component_1.AppNavigationComponent
+            ],
             imports: [platform_browser_1.BrowserModule, router_1.RouterModule, forms_1.FormsModule, http_1.HttpModule, app_routes_1.appRouterProviders],
             bootstrap: [app_component_1.AppComponent],
             providers: [user_service_1.UserService, authenticate_service_1.AuthenticateService, video_service_1.VideoService, upload_service_1.FileUploadService]

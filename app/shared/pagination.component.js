@@ -68,7 +68,21 @@ var PaginationComponent = (function () {
             selector: 'pagination',
             templateUrl: 'app/shared/pagination.component.html',
             inputs: ['itemsCount'],
-            outputs: ['changePage']
+            outputs: ['changePage'],
+            animations: [
+                core_1.trigger('flyInOut', [
+                    core_1.state('in', core_1.style({
+                        backgroundColor: '#eee',
+                        transform: 'scale(1)'
+                    })),
+                    core_1.state('out', core_1.style({
+                        backgroundColor: '#05dc22',
+                        transform: 'scale(1.1)'
+                    })),
+                    core_1.transition('inactive => active', core_1.animate('300ms ease-in')),
+                    core_1.transition('active => inactive', core_1.animate('300ms ease-out'))
+                ])
+            ]
         }), 
         __metadata('design:paramtypes', [router_1.ActivatedRoute, router_1.Router])
     ], PaginationComponent);

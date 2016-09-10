@@ -29,6 +29,16 @@ var VideoDetailComponent = (function () {
             }
         });
     };
+    VideoDetailComponent.prototype.onRatingChanged = function (rating) {
+        if (this.video.starRating != 0) {
+            this.video.starRating += rating;
+            this.video.starRating /= 2;
+        }
+        else
+            this.video.starRating = rating;
+        this.video.starRating = +this.video.starRating.toFixed(2);
+        this._vs.updateItem(this.video);
+    };
     VideoDetailComponent.prototype.ngOnDestroy = function () {
         this.sub.unsubscribe();
         this.sub1.unsubscribe();
