@@ -44,5 +44,5 @@ typings/
 *.js
 *.map
 !app.js
-!js
+!js/
 uploads/
