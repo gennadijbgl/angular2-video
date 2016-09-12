@@ -1,5 +1,8 @@
 <div>
+    <i (click)="onStarClicked(-1)" class="material-icons">arrow_drop_down</i>
+
     <i *ngFor="let item of ratingArr|async; let i=index"
        (click)="onStarClicked(i)" class="material-icons">{{item}}</i>
 
+    <i (click)="onStarClicked(-1)" class="material-icons">arrow_drop_up</i>
 </div>

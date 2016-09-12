@@ -32,7 +32,7 @@ export class PaginationComponent implements OnInit, OnDestroy {
     itemsCount:Observable<number>;
     pages:Observable<number[]>;
 
-    postsPerPage:number = 2;
+    postsPerPage:number = 4;
     pagesPerZone:number = 3;
 
     private sub: Subscription;

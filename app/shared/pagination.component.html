@@ -2,7 +2,7 @@
     <ul class="pagination" >
 
 
-        <li class="waves-effect" [ngClass]="{'disabled': !canPrev}" >
+        <li [ngClass]="{'disabled': !canPrev,'waves-effect':canPrev}" >
             <a  [routerLink]="['/list',pagePrev]">
                 <i class="material-icons">chevron_left</i>
             </a>
@@ -16,7 +16,7 @@
 
         </paginationF>
 
-        <li class="waves-effect" [ngClass]="{disabled: !canNext}">
+        <li [ngClass]="{disabled: !canNext,'waves-effect':canNext}">
             <a [routerLink]="['/list', pageNext]">
                 <i class="material-icons">chevron_right</i>
             </a>

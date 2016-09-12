@@ -52,8 +52,12 @@ export class VideoFormComponent implements OnInit,AfterViewChecked,OnDestroy{
     }
 
     ngOnDestroy(){
-        this.sub.unsubscribe();
-        this.sub1.unsubscribe();
+        if(this.sub)
+            this.sub.unsubscribe();
+
+
+        if(this.sub1)
+            this.sub1.unsubscribe();
     }
 
     onBack(){
@@ -139,11 +143,8 @@ export class VideoFormComponent implements OnInit,AfterViewChecked,OnDestroy{
     onRemove(){
         console.log(this.video);
 
-        let a = this._vs.deleteItem(this.video);
-        a.then(t=>
-        {
-            console.log(t);
-        });
+        let a = this._vs.deleteItem(this.video)
+            .do(t=>console.log(t));
         this.router.navigate(['/list']);
     }
 

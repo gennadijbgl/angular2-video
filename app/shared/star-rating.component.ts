@@ -7,10 +7,7 @@ import {Observable, Subscription} from "rxjs";
     styleUrls:['app/shared/star-rating.component.css']
 })
 export class StarRatingComponent implements OnInit,OnChanges {
-    s = '<div class="star-floating">' +
-        '<i  class="material-icons" style="width: 10px;">star</i> ' +
-        '<i  class="material-icons">star_border</i>' +
-        '</div>';
+
     @Input() rating: number;
     @Output() ratingChanged = new EventEmitter<number>();
 
@@ -57,7 +54,6 @@ export class StarRatingComponent implements OnInit,OnChanges {
 
 
     ngOnInit() {
-
         this.calcStarRating();
     }
 }

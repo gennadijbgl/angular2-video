@@ -34,7 +34,7 @@ export class VideoDetailComponent implements OnInit ,OnDestroy{
 
     onRatingChanged(rating:number){
         if(this.video.starRating!=0){
-            this.video.starRating +=rating;
+            this.video.starRating += rating;
             this.video.starRating /= 2;
         }
         else this.video.starRating = rating;
